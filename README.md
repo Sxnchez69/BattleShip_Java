@@ -1,4 +1,4 @@
 # S3
 
 
-Si quieres ver q es piensa en el chiste del maletin
+Si quieres ver q es, piensa en el chiste del maletin
