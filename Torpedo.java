@@ -58,7 +58,7 @@ public class Torpedo {
         } while(opcion != 1 && opcion != 2);
 
         if (Barco.getTamaño == 1){
-            if (Barco.getEstadoBarco == false){
+            if (Barco.getEstado == false){
                 tamaño = 2;
                 setTamaño(2);
                 System.out.println("Se disparará un torpedo a la una fila");
