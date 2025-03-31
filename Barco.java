@@ -2,14 +2,13 @@ public class Barco {
     protected String tipo;
     protected int tamaño;
     protected String orientacion;
-    protected int[][] posicion_barco;
     protected boolean[] estado_barco;
+    protected int fila;
+    protected int columna;
 
-    public Barco(int tamaño, String orientacion, int fila, int columna) {
-        this.orientacion = orientacion;
+    public Barco(int tamaño) {
         this.tipo = "Barco";
         this.tamaño = tamaño;
-        this.posicion_barco = new int[fila][columna];
         this.estado_barco = new boolean[tamaño];
     }
 
@@ -29,14 +28,6 @@ public class Barco {
         this.orientacion = orientacion;
     }
 
-    public int[][] getPosicion_barco() {
-        return posicion_barco;
-    }
-
-    public void setPosicion_barco(int[][] posicion_barco) {
-        this.posicion_barco = posicion_barco;
-    }
-
     public boolean[] getEstado_barco() {
         return estado_barco;
     }
@@ -45,4 +36,19 @@ public class Barco {
         this.estado_barco = estado_barco;
     }
 
+    public int getFila() {
+        return fila;
+    }
+
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
+
+    public void setColumna(int columna) {
+        this.columna = columna;
+    }
 }
