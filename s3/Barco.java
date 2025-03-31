@@ -1,3 +1,5 @@
+package s3;
+
 public class Barco {
     protected String tipo;
     protected int tamaño;

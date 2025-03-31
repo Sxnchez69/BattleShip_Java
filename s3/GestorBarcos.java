@@ -1,14 +1,18 @@
+package s3;
+
 import java.util.ArrayList;
 
 public class GestorBarcos {
     private ArrayList<Barco> barcos;
+    private ArrayList<Submarino> submarinos;
     private int[][] tablero_barcos;
     private int[][] tablero_submarino;
 
     public GestorBarcos() {
         this.barcos = new ArrayList<>();
-        this.tablero_barcos = new int[7][7];
-        this.tablero_submarino = new int[7][7];
+        this.submarinos = new ArrayList<>();
+        this.tablero_barcos = new int[8][8];
+        this.tablero_submarino = new int[8][8];
 
         Barco b1 = new Barco(1);
         Barco b2_1 = new Barco(2);
@@ -40,18 +44,20 @@ public class GestorBarcos {
         barcos.add(b3_3);
         barcos.add(b5_1);
         barcos.add(b5_2);
-        barcos.add(s2_1);
-        barcos.add(s2_2);
-        barcos.add(s2_3);
-        barcos.add(s2_4);
-        barcos.add(s2_5);
-        barcos.add(s3_1);
-        barcos.add(s3_2);
-        barcos.add(s3_3);
+        submarinos.add(s2_1);
+        submarinos.add(s2_2);
+        submarinos.add(s2_3);
+        submarinos.add(s2_4);
+        submarinos.add(s2_5);
+        submarinos.add(s3_1);
+        submarinos.add(s3_2);
+        submarinos.add(s3_3);
 
     }
-
-
-
-
+    public ArrayList<Submarino> getSubmarinos() {
+        return submarinos;
+    }
+    public ArrayList<Barco> getBarcos() {
+        return barcos;
+    }
 }
