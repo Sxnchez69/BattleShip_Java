@@ -1,5 +1,5 @@
+package s3;
 import java.util.Scanner;
-
 public class Misil {
     private int fila;
     private int columna;
@@ -45,8 +45,9 @@ public class Misil {
     }
 
     public void misilGrande(Scanner teclado){
-        if (barco.getTamaño == 1){
-            if (barco.Dañado == true){
+        Barco b = new Barco(1, "", "", "")
+        if (b.tamaño == 1){
+            if (b.estado_barco == true){
 
             }
         }

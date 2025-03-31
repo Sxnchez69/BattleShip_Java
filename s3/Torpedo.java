@@ -1,10 +1,12 @@
+package s3;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Torpedo {
     private int fila;
     private int columna;
-    private int tamaño;
+    private int tamañoTorpedo;
 
     String rojo = "\u001B[31m";
     String verde = "\u001B[32m";
@@ -14,7 +16,7 @@ public class Torpedo {
     public Torpedo(int fila, int columna, int tamaño) {
         this.fila = fila;
         this.columna = columna;
-        this.tamaño = tamaño;
+        this.tamañoTorpedo = tamaño;
     }
 
     public int getFila() {
@@ -31,11 +33,11 @@ public class Torpedo {
         this.columna = columna;
     }
 
-    public int getTamaño() {
-        return tamaño;
+    public int getTamañoTorpedo() {
+        return tamañoTorpedo;
     }
-    public void setTamaño(int tamaño) {
-        this.tamaño = tamaño;
+    public void setTamañoTorpedo(int tamañoTorpedo) {
+        this.tamañoTorpedo = tamañoTorpedo;
     }
     public int lanzarTorpedo(Scanner teclado) {
         int opcion = 0;
@@ -56,26 +58,27 @@ public class Torpedo {
                 System.out.println(rojo + "Error: Indica si quieres atacar una fila (1) o una columna (2)" + reset);
             }
         } while(opcion != 1 && opcion != 2);
+        Submarino s = new Submarino();
+        if (s.tamaño == 2) {
+            System.out.println("Se disparará un torpedo a la una fila");
+            System.out.println("Indica a qué fila quieres tirar el torpedo: ");
+            fila = teclado.nextInt();
+            System.out.println("¿Estás seguro que quieres lanzar el torpedo en la fila " + fila + "?");
+            confirmFila = teclado.nextInt();
+            for (boolean estado : s.estado_barco) {
+                if (estado == false){
 
-        if (Barco.getTamaño == 1){
-            if (Barco.getEstado == false){
-                tamaño = 2;
-                setTamaño(2);
-                System.out.println("Se disparará un torpedo a la una fila");
-                System.out.println("Indica a qué fila quieres tirar el torpedo: ");
-                fila = teclado.nextInt();
-                System.out.println("¿Estás seguro que quieres lanzar el torpedo en la fila " + fila + "?");
-                confirmFila = teclado.nextInt();
+                }
             }
-            else {
-                tamaño = 1;
-                setTamaño(1);
+        }
+        else {
+            tamañoTorpedo = 1;
+                setTamañoTorpedo(1);
                 System.out.println("Se disparará un torpedo a la una columna");
                 System.out.println("Indica a qué columna quieres tirar el torpedo: ");
                 columna = teclado.nextInt();
                 System.out.println("¿Estás seguro que quieres lanzar el torpedo en la columna " + columna + "?");
                 confirmColumna = teclado.nextInt();
-            }
         }
     }
 }
