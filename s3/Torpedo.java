@@ -40,7 +40,7 @@ public class Torpedo {
         this.tamañoTorpedo = tamañoTorpedo;
     }
 
-    public int lanzarTorpedo(Scanner teclado) {
+    public boolean lanzarTorpedo(Scanner teclado) {
         GestorBarcos gs = new GestorBarcos();
         int opcion = 0;
         int confirmFila, confirmColumna;
@@ -60,33 +60,35 @@ public class Torpedo {
                 System.out.println(rojo + "Error: Indica si quieres atacar una fila (1) o una columna (2)" + reset);
             }
         } while(opcion != 1 && opcion != 2);
-        if (gs.getSubmarinos(). == 2) {
-            System.out.println("Se disparará un torpedo a la una fila");
-            System.out.println("Indica a qué fila quieres tirar el torpedo: ");
-            fila = teclado.nextInt();
-            System.out.println("¿Estás seguro que quieres lanzar el torpedo en la fila " + fila + "?");
-            confirmFila = teclado.nextInt();
-            for (Submarino sub : gs.getSubmarinos()){
-                for (boolean estado : sub.estado_barco){
-                    if (sub.fila == fila){
+        for (Submarino s : gs.getSubmarinos()) {
+            if (tamañoTorpedo == 2) {
+                System.out.println("Se disparará un torpedo a la una fila");
+                System.out.println("Indica a qué fila quieres tirar el torpedo: ");
+                fila = teclado.nextInt();
+                System.out.println("¿Estás seguro que quieres lanzar el torpedo en la fila " + fila + "?");
+                confirmFila = teclado.nextInt();
+                for (boolean estado : s.estado_barco){
+                    if (s.fila == fila){
                         estado = false;
                     }
                 }
+                return true;
+
             }
-        }
-        else {
-            System.out.println("Se disparará un torpedo a la una columna");
-            System.out.println("Indica a qué columna quieres tirar el torpedo: ");
-            columna = teclado.nextInt();
-            System.out.println("¿Estás seguro que quieres lanzar el torpedo en la columna " + columna + "?");
-            confirmColumna = teclado.nextInt();
-            for (Submarino sub : gs.getSubmarinos()){
-                for (boolean estado : sub.estado_barco){
-                    if (sub.fila == fila){
+            else {
+                System.out.println("Se disparará un torpedo a la una columna");
+                System.out.println("Indica a qué columna quieres tirar el torpedo: ");
+                columna = teclado.nextInt();
+                System.out.println("¿Estás seguro que quieres lanzar el torpedo en la columna " + columna + "?");
+                confirmColumna = teclado.nextInt();
+                for (boolean estado : s.estado_barco){
+                    if (s.columna == columna){
                         estado = false;
                     }
                 }
+                return true;
             }
         }
+        return false;
     }
 }
