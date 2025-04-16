@@ -45,6 +45,7 @@ public class Misil {
     }
 
     public void misilGrande(Scanner teclado){
+        Barco b = new Barco(1, "", "", "")
         if (b.tamaño == 1){
             if (b.estado_barco == true){
 
