@@ -36,13 +36,13 @@ public class Misil {
     public void inventario(){
         System.out.println("MISILES DISPONIBLES");
         System.out.println("1. Misil de 1x1 casillas");
-        if (misilGrande() == true){
-
+        if (misilGrande()){
             System.out.println("2. Misil de 3x3 casillas");
         }
     }
     public int[] lanzarMisil(){
         int opcion;
+        int contadorVeces = 0;
         inventario();
         System.out.println("============");
         System.out.println("Lanzar misil");
@@ -54,7 +54,13 @@ public class Misil {
                 System.out.println("Se lanzará un misil de 1x1 casillas");
             }
             else if (opcion == 2){
-                System.out.println("Se lanzará un misil de 3x3 casillas");
+                if (contadorVeces == 0){
+                    System.out.println("Se lanzará un misil de 3x3 casillas");
+                    contadorVeces++;
+                }
+                else {
+                    System.out.println("ERROR: No se puede lanzar misil de 3x3 casillas");
+                }
             }
             else{
                 System.out.println("ERROR: Opción no válida");
@@ -71,7 +77,8 @@ public class Misil {
         GestorBarcos gb = new GestorBarcos();
         for (Barco b : gb.getBarcos()){
             if (b.getTamaño() == 1){
-                if (b.getEstado_barco().equals(true)){
+                boolean[] estado = b.getEstado_barco();
+                if (estado.length == 1 && estado[0]){
                     return true;
                 }
             }
