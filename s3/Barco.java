@@ -8,10 +8,13 @@ public class Barco {
     protected int fila;
     protected int columna;
 
-    public Barco(int tamaño) {
+    public Barco(int tamaño,int fila,int columna,String orientacion) {
         this.tipo = "Barco";
         this.tamaño = tamaño;
         this.estado_barco = new boolean[tamaño];
+        this.fila = fila;
+        this.columna = columna;
+        this.orientacion = orientacion;
     }
 
     public int getTamaño() {

@@ -8,14 +8,14 @@ public class Main {
         GestorBarcos g1 = new GestorBarcos();
         Misil m1 = new Misil();
 
-//        g1.colocarBarco(3);
-//        g1.getTablero_barcos();
+        g1.colocarBarco();
+        g1.getTablero_barcos();
 //
 //        g1.colocarSubmarino(2);
 //        g1.getTablero_submarino();
 //
 //        g1.colocarSubmarino(2);
 //        g1.getTablero_submarino();
-        m1.lanzarMisil();
+//        m1.lanzarMisil();
     }
 }
