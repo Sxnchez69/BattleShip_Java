@@ -5,10 +5,10 @@ public class Barco {
     protected int tamaño;
     protected String orientacion;
     protected boolean[] estado_barco;
-    protected int fila;
-    protected int columna;
+    protected int[] fila;
+    protected int[] columna;
 
-    public Barco(int tamaño,int fila,int columna,String orientacion) {
+    public Barco(int tamaño,int[] fila,int[] columna,String orientacion) {
         this.tipo = "Barco";
         this.tamaño = tamaño;
         this.estado_barco = new boolean[tamaño];
@@ -41,19 +41,19 @@ public class Barco {
         this.estado_barco = estado_barco;
     }
 
-    public int getFila() {
+    public int[] getFila() {
         return fila;
     }
 
-    public void setFila(int fila) {
+    public void setFila(int[] fila) {
         this.fila = fila;
     }
 
-    public int getColumna() {
+    public int[] getColumna() {
         return columna;
     }
 
-    public void setColumna(int columna) {
+    public void setColumna(int[] columna) {
         this.columna = columna;
     }
 }

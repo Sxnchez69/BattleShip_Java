@@ -14,19 +14,43 @@ public class GestorBarcos {
     public GestorBarcos() {
         this.barcos = new ArrayList<>();
         this.submarinos = new ArrayList<>();
-        this.tablero_barcos = new String[8][8];
-        this.tablero_submarino = new String[8][8];
+        this.tablero_barcos = new String[9][9];
+        this.tablero_submarino = new String[9][9];
 
 
-        for (int i=0; i<8; i++) {
-            for (int j=0; j<8; j++) {
-                tablero_barcos[i][j] = "~";
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
+
+                if (i==0){
+                    tablero_barcos[i][j] = String.valueOf(j);
+                    tablero_barcos[i][0] = " ";
+
+
+                }else{
+                    tablero_barcos[i][j] = "~";
+                }
+                if(j==0){
+                    tablero_barcos[i][j] = String.valueOf(i);
+                }
+
+
             }
         }
 
-        for (int i=0; i<8; i++) {
-            for (int j=0; j<8; j++) {
-                tablero_submarino[i][j] = "-";
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
+
+                if (i==0){
+                    tablero_submarino[i][j] = String.valueOf(j);
+                    tablero_submarino[i][0] = " ";
+
+                }else{
+                    tablero_submarino[i][j] = "-";
+                }
+                if(j==0){
+                    tablero_submarino[i][j] = String.valueOf(i);
+                }
+
             }
         }
 
@@ -39,8 +63,8 @@ public class GestorBarcos {
     }
 
     public void getTablero_barcos() {
-        for (int i=0; i<8; i++) {
-            for (int j=0; j<8; j++) {
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
                 System.out.print(tablero_barcos[i][j]+"  ");
             }
             System.out.println("");
@@ -48,8 +72,8 @@ public class GestorBarcos {
     }
 
     public void getTablero_submarino() {
-        for (int i=0; i<8; i++) {
-            for (int j=0; j<8; j++) {
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
                 System.out.print(tablero_submarino[i][j]+"  ");
             }
             System.out.println("");
@@ -67,12 +91,15 @@ public class GestorBarcos {
         do{
             System.out.println("Ingrese el tamaño del barco: ");
             tamaño = teclado.nextInt();
-            if (tamaño!=1||tamaño!=2||tamaño!=3||tamaño!=5){
+            if (tamaño!=1&&tamaño!=2&&tamaño!=3&&tamaño!=5){
                 System.out.println("Tamaño invalido");
                 System.out.println("Tamaños disponibles: 1,2,3,5");
             }
-        }while (tamaño!=1||tamaño!=2||tamaño!=3||tamaño!=5);
+        }while (tamaño!=1&&tamaño!=2&&tamaño!=3&&tamaño!=5);
+        teclado.nextLine();
 
+        int[] filas = new int[tamaño];
+        int[] columnas = new int[tamaño];
 
         boolean b1=false;
         boolean b2=false;
@@ -156,14 +183,14 @@ public class GestorBarcos {
         int contadorFaltantes=0;
         if (orientacion.equalsIgnoreCase("H")||orientacion.equalsIgnoreCase("Horizontal")) {
             for(int i=1; i<=tamaño;i++){
-                if (columna+i-2 >7){
+                if (columna+i >8){
                     contadorFaltantes++;
-                    if (tablero_barcos[fila-1][columna-1-contadorFaltantes].equals("0")) {
+                    if (tablero_barcos[fila][columna-contadorFaltantes].equals("0")) {
                         System.out.println("Posicion ocupada");
                         getTablero_barcos();
                         return false;
                     }
-                }else if (tablero_barcos[fila-1][columna+i-2].equals("0")) {
+                }else if (tablero_barcos[fila][columna+i].equals("0")) {
                     System.out.println("Posicion ocupada");
                     getTablero_barcos();
                     return false;
@@ -171,14 +198,14 @@ public class GestorBarcos {
             }
         } else if (orientacion.equalsIgnoreCase("V")||orientacion.equalsIgnoreCase("Vertical")) {
             for(int i=1; i<=tamaño;i++){
-                if (fila+i-2 >7){
+                if (fila+i >8){
                     contadorFaltantes++;
-                    if (tablero_barcos[fila-1-contadorFaltantes][columna-1].equals("0")) {
+                    if (tablero_barcos[fila-contadorFaltantes][columna].equals("0")) {
                         System.out.println("Posicion ocupada");
                         getTablero_barcos();
                         return false;
                     }
-                }else if (tablero_barcos[fila+i-2][columna-1].equals("0")) {
+                }else if (tablero_barcos[fila+i][columna].equals("0")) {
                     System.out.println("Posicion ocupada");
                     getTablero_barcos();
                     return false;
@@ -190,26 +217,34 @@ public class GestorBarcos {
         contadorFaltantes=0;
         if (orientacion.equalsIgnoreCase("H")||orientacion.equalsIgnoreCase("Horizontal")) {
             for(int i=1; i<=tamaño;i++){
-                if (columna+i-2 >7){
+                if (columna+i-1 >8){
                     contadorFaltantes++;
-                    tablero_barcos[fila-1][columna-1-contadorFaltantes]="0";
+                    tablero_barcos[fila][columna-contadorFaltantes]="0";
+                    filas[i-1]=fila;
+                    columnas[i-1]=columna-contadorFaltantes;
                 }else{
-                    tablero_barcos[fila-1][columna+i-2]="0";
+                    tablero_barcos[fila][columna+i-1]="0";
+                    filas[i-1]=fila;
+                    columnas[i-1]=columna+i-1;
                 }
             }
             System.out.println("Barco colocado");
         } else if (orientacion.equalsIgnoreCase("V")||orientacion.equalsIgnoreCase("Vertical")) {
             for(int i=1; i<=tamaño;i++){
-                if (fila+i-2 >7) {
+                if (fila+i-1 >8) {
                     contadorFaltantes++;
-                    tablero_barcos[fila - 1 - contadorFaltantes][columna - 1] = "0";
+                    tablero_barcos[fila-contadorFaltantes][columna] = "0";
+                    filas[i-1]=fila-contadorFaltantes;
+                    columnas[i-1]=columna;
                 }else{
-                    tablero_barcos[fila+i-2][columna-1]="0";
+                    tablero_barcos[fila+i-1][columna]="0";
+                    filas[i-1]=fila+i-1;
+                    columnas[i-1]=columna;
                 }
             }
             System.out.println("Barco colocado");
         }
-        Barco b =new Barco(tamaño,fila,columna,orientacion);
+        Barco b =new Barco(tamaño,filas,columnas,orientacion);
         barcos.add(b);
         return true;
 
@@ -372,4 +407,45 @@ public class GestorBarcos {
         System.out.println("Se lanzó un misil al agua");
         return false;
     }
+
+    public boolean dispararMisil(){
+        int fila, columna;
+        System.out.println("Indique fila y columna: ");
+        //Fila
+        do {
+            System.out.print("Fila: ");
+            fila = teclado.nextInt();
+            if (fila < 1) {
+                System.out.println("No puedes poner una fila menor que 1");
+            } else if (fila > 8) {
+                System.out.println("No puedes poner una fila mayor que 8");
+            }
+        } while (fila < 1 || fila > 8);
+        teclado.nextLine();
+        //Columna
+        do {
+            System.out.print("Columna: ");
+            columna = teclado.nextInt();
+            if (columna < 1) {
+                System.out.println("No puedes poner una columna menor que 1");
+            } else if (columna > 8) {
+                System.out.println("No puedes poner una columna mayor que 8");
+            }
+        } while (columna < 1 || columna > 8);
+        teclado.nextLine();
+
+        //Tocado?
+
+        if(tablero_barcos[fila][columna].equalsIgnoreCase("0")){
+            tablero_barcos[fila][columna]="X";
+        }
+
+        return true;
+
+    }
+
+
 }
+
+
+
