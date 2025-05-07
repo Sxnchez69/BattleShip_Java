@@ -7,6 +7,20 @@ public class TableroBarcos {
     Scanner teclado = new Scanner(System.in);
     private ArrayList<Barco> barcos;
     private String[][] tablero_barcos;
+    private String[] colores = {
+            "\u001B[31m", // Rojo
+            "\u001B[32m", // Verde
+            "\u001B[33m", // Amarillo
+            "\u001B[34m", // Azul
+            "\u001B[35m", // Magenta
+            "\u001B[36m", // Cyan
+            "\u001B[91m", // Rojo claro
+            "\u001B[92m", // Verde claro
+            "\u001B[93m", // Amarillo claro
+            "\u001B[94m"  // Azul claro
+    };
+    private String reset = "\u001B[0m";
+
 
     public TableroBarcos() {
         this.barcos = new ArrayList<>();
@@ -54,6 +68,7 @@ public class TableroBarcos {
     }
 
     public boolean colocarBarco() {
+
         int fila=0;
         int columna=0;
         int tamaño=0;
@@ -61,6 +76,12 @@ public class TableroBarcos {
         System.out.println("Colocando Barcos");
 
         for(Barco barco: barcos) {
+            int colorIndex = barcos.indexOf(barco) % colores.length;
+            String color = colores[colorIndex];
+
+            tamaño=barco.getTamaño();
+
+            System.out.println("Barco: "+barco.getTamaño()+" casillas");
             int[] filas = new int[tamaño];
             int[] columnas = new int[tamaño];
 
@@ -110,35 +131,50 @@ public class TableroBarcos {
                 } while (columna < 1 || columna > 8);
                 teclado.nextLine();
 
-                //Comprobar ocupacion
-                contadorFaltantes = 0;
-                if (barco.getOrientacion().equals("H")) {
-                    for (int i = 1; i <= tamaño; i++) {
-                        if (columna + i > 8) {
-                            contadorFaltantes++;
-                            if (tablero_barcos[fila][columna - contadorFaltantes].equals("0")) {
-                                System.out.println("Posicion ocupada");
-                                ocupado = true;
-                            }
-                        } else if (tablero_barcos[fila][columna + i].equals("0")) {
-                            System.out.println("Posicion ocupada");
-                            ocupado = true;
+
+
+                for (Barco b : barcos) {
+                    for(int i=0;i<b.getTamaño();i++){
+                        if (b.getFila()[i]==fila){
+                            ocupado=true;
                         }
                     }
-                } else if (barco.getOrientacion().equals("V")) {
-                    for (int i = 1; i <= tamaño; i++) {
-                        if (fila + i > 8) {
-                            contadorFaltantes++;
-                            if (tablero_barcos[fila - contadorFaltantes][columna].equals("0")) {
-                                System.out.println("Posicion ocupada");
-                                ocupado = true;
-                            }
-                        } else if (tablero_barcos[fila + i][columna].equals("0")) {
-                            System.out.println("Posicion ocupada");
-                            ocupado = true;
+                    for(int i=0;i<b.getColumna().length;i++){
+                        if (b.getColumna()[i]==fila){
+                            ocupado=true;
                         }
                     }
                 }
+
+                //Comprobar ocupacion
+//                contadorFaltantes = 0;
+//                if (barco.getOrientacion().equals("H")) {
+//                    for (int i = 1; i <= tamaño; i++) {
+//                        if (columna + i > 8) {
+//                            contadorFaltantes++;
+//                            if (tablero_barcos[fila][columna - contadorFaltantes].startsWith("/")) {
+//                                System.out.println("Posicion ocupada");
+//                                ocupado = true;
+//                            }
+//                        } else if (tablero_barcos[fila][columna + i].startsWith("/")) {
+//                            System.out.println("Posicion ocupada");
+//                            ocupado = true;
+//                        }
+//                    }
+//                } else if (barco.getOrientacion().equals("V")) {
+//                    for (int i = 1; i <= tamaño; i++) {
+//                        if (fila + i > 8) {
+//                            contadorFaltantes++;
+//                            if (tablero_barcos[fila - contadorFaltantes][columna].startsWith("/")) {
+//                                System.out.println("Posicion ocupada");
+//                                ocupado = true;
+//                            }
+//                        } else if (tablero_barcos[fila + i][columna].startsWith("/")) {
+//                            System.out.println("Posicion ocupada");
+//                            ocupado = true;
+//                        }
+//                    }
+//                }
                 if(ocupado==true){
                     getTablero_barcos();
                 }
@@ -150,11 +186,11 @@ public class TableroBarcos {
                 for (int i = 1; i <= tamaño; i++) {
                     if (columna + i - 1 > 8) {
                         contadorFaltantes++;
-                        tablero_barcos[fila][columna - contadorFaltantes] = "0";
+                        tablero_barcos[fila][columna - contadorFaltantes] = color + "0" + reset;
                         filas[i - 1] = fila;
                         columnas[i - 1] = columna - contadorFaltantes;
                     } else {
-                        tablero_barcos[fila][columna + i - 1] = "0";
+                        tablero_barcos[fila][columna + i - 1] = color + "0" + reset;
                         filas[i - 1] = fila;
                         columnas[i - 1] = columna + i - 1;
                     }
@@ -164,19 +200,20 @@ public class TableroBarcos {
                 for (int i = 1; i <= tamaño; i++) {
                     if (fila + i - 1 > 8) {
                         contadorFaltantes++;
-                        tablero_barcos[fila - contadorFaltantes][columna] = "0";
+                        tablero_barcos[fila - contadorFaltantes][columna] = color + "0" + reset;
                         filas[i - 1] = fila - contadorFaltantes;
                         columnas[i - 1] = columna;
                     } else {
-                        tablero_barcos[fila + i - 1][columna] = "0";
+                        tablero_barcos[fila + i - 1][columna] = color + "0" + reset;
                         filas[i - 1] = fila + i - 1;
                         columnas[i - 1] = columna;
                     }
                 }
-                barco.setFila(filas);
-                barco.setColumna(columnas);
-                System.out.println("Barco colocado");
             }
+            barco.setFila(filas);
+            barco.setColumna(columnas);
+            System.out.println("Barco colocado");
+            getTablero_barcos();
         }
         return true;
     }
