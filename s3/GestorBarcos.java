@@ -387,26 +387,28 @@ public class GestorBarcos {
             }
             System.out.println("Submarino colocado");
         }
-        Submarino s = new Submarino(tamaño, fila, columna, orientacion);
+        int[] fils= new int[8];
+        int[] columns=new int[8];
+        Submarino s = new Submarino(tamaño, fils, columns, orientacion);
         submarinos.add(s);
         return true;
     }
 
-    public boolean comprobarEstadoBarcos(){
-        Misil misil = new Misil();
-        int[] coordenadas = misil.lanzarMisil();
-        int filaMisil = coordenadas[0];
-        int columnaMisil = coordenadas[1];
-
-        for (Barco barco : barcos) {
-            if (barco.getFila() == filaMisil && barco.getColumna() == columnaMisil) {
-                System.out.println("¡Se ha dañado un barco!");
-                return true;
-            }
-        }
-        System.out.println("Se lanzó un misil al agua");
-        return false;
-    }
+//    public boolean comprobarEstadoBarcos(){
+//        Misil misil = new Misil();
+//        int[] coordenadas = misil.lanzarMisil();
+//        int filaMisil = coordenadas[0];
+//        int columnaMisil = coordenadas[1];
+//
+//        for (Barco barco : barcos) {
+//            if (barco.getFila() == filaMisil && barco.getColumna() == columnaMisil) {
+//                System.out.println("¡Se ha dañado un barco!");
+//                return true;
+//            }
+//        }
+//        System.out.println("Se lanzó un misil al agua");
+//        return false;
+//    }
 
     public boolean dispararMisil(){
         int fila, columna;
