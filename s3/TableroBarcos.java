@@ -1,11 +1,12 @@
 package s3;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TableroBarcos {
     Scanner teclado = new Scanner(System.in);
-    private ArrayList<Barco> barcos;
+    protected ArrayList<Barco> barcos;
     private String[][] tablero_barcos;
     private String[] colores = {
             "\u001B[31m", // Rojo
@@ -185,4 +186,83 @@ public class TableroBarcos {
 
         return true;
     }
+
+    public boolean recibirDisparo(int fila, int columna) {
+        String celda = tablero_barcos[fila][columna];
+        if (!celda.contains("0")||!celda.contains("O")) {
+            tablero_barcos[fila][columna] = "X";
+
+            for (Barco barco : barcos) {
+                int[] filas = barco.getFila();
+                int[] columnas = barco.getColumna();
+                for (int i = 0; i < filas.length; i++) {
+                    if (filas[i] == fila && columnas[i] == columna) {
+                        barco.getEstado_barco()[i] = true;
+                        break;
+                    }
+                }
+            }
+            return true;
+        } else {
+            tablero_barcos[fila][columna] = "O";
+            return false;
+        }
+    }
+
+//    public void colocarBarcosIA() {
+//        Random rand = new Random();
+//
+//        for (Barco barco : barcos) {
+//            boolean colocado = false;
+//            int tamaño = barco.getTamaño();
+//            while (!colocado) {
+//                int fila = rand.nextInt(8) + 1;
+//                int columna = rand.nextInt(8) + 1;
+//                String orientacion = rand.nextBoolean() ? "H" : "V";
+//                barco.setOrientacion(orientacion);
+//
+//                int[] filas = new int[tamaño];
+//                int[] columnas = new int[tamaño];
+//                boolean puedeColocar = true;
+//
+//                if (orientacion.equals("H")) {
+//                    if (columna + tamaño - 1 > 8) continue;
+//                    for (int i = 0; i < tamaño; i++) {
+//                        if (!tablero_barcos[fila][columna + i].equals("~")) {
+//                            puedeColocar = false;
+//                            break;
+//                        }
+//                    }
+//                    if (puedeColocar) {
+//                        for (int i = 0; i < tamaño; i++) {
+//                            tablero_barcos[fila][columna + i] = "0";
+//                            filas[i] = fila;
+//                            columnas[i] = columna + i;
+//                        }
+//                        barco.setFila(filas);
+//                        barco.setColumna(columnas);
+//                        colocado = true;
+//                    }
+//                } else {
+//                    if (fila + tamaño - 1 > 8) continue;
+//                    for (int i = 0; i < tamaño; i++) {
+//                        if (!tablero_barcos[fila + i][columna].equals("~")) {
+//                            puedeColocar = false;
+//                            break;
+//                        }
+//                    }
+//                    if (puedeColocar) {
+//                        for (int i = 0; i < tamaño; i++) {
+//                            tablero_barcos[fila + i][columna] = "0";
+//                            filas[i] = fila + i;
+//                            columnas[i] = columna;
+//                        }
+//                        barco.setFila(filas);
+//                        barco.setColumna(columnas);
+//                        colocado = true;
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

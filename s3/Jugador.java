@@ -1,10 +1,12 @@
 package s3;
 
 public class Jugador {
-    String nombre;
+    private String nombre;
+    protected TableroBarcos tb;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
+        this.tb = new TableroBarcos();
     }
 
     public String getNombre() {
@@ -13,5 +15,16 @@ public class Jugador {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    TableroBarcos tb = new TableroBarcos();
+
+    public boolean dispararMisil(TableroBarcos tableroEnemigo) {
+        Misil misil = new Misil();
+        int[] coordenadas = misil.lanzarMisil();
+        int fila = coordenadas[0];
+        int columna = coordenadas[1];
+
+        boolean impacto = tableroEnemigo.recibirDisparo(fila, columna);
+        return impacto;
+    }
+
+
 }
