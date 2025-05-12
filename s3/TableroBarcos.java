@@ -187,9 +187,9 @@ public class TableroBarcos {
         return true;
     }
 
-    public boolean recibirDisparo(int fila, int columna) {
+    public boolean recibirDisparoNormal(int fila, int columna) {
         String celda = tablero_barcos[fila][columna];
-        if (!celda.contains("0")||!celda.contains("O")) {
+        if (celda.contains("0")) {
             tablero_barcos[fila][columna] = "X";
 
             for (Barco barco : barcos) {
@@ -204,10 +204,40 @@ public class TableroBarcos {
             }
             return true;
         } else {
-            tablero_barcos[fila][columna] = "O";
+            tablero_barcos[fila][columna] = "w";
             return false;
         }
     }
+
+    public boolean recibirDisparoGordo(int fila, int columna) throws ArrayIndexOutOfBoundsException {
+        String celda = tablero_barcos[fila][columna];
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+//                if (tablero_barcos[fila+i][columna+j] == null) {
+//                    throw new ArrayIndexOutOfBoundsException("");
+//                }
+                if (celda.contains("0")) {
+                    tablero_barcos[fila+i][columna+j] = "X";
+                    for (Barco barco : barcos) {
+                        int[] filas = barco.getFila();
+                        int[] columnas = barco.getColumna();
+                        for (int k = 0; k < filas.length; k++) {
+                            if (filas[k] == fila+i && columnas[k] == columna+j) {
+                                barco.getEstado_barco()[k] = true;
+                                break;
+                            }
+                        }
+                    }
+                    return true;
+                } else {
+                    tablero_barcos[fila+i][columna+j] = "w";
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
 
 //    public void colocarBarcosIA() {
 //        Random rand = new Random();

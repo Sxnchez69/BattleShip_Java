@@ -22,7 +22,7 @@ public class Jugador {
         int fila = coordenadas[0];
         int columna = coordenadas[1];
 
-        boolean impacto = tableroEnemigo.recibirDisparo(fila, columna);
+        boolean impacto = tableroEnemigo.recibirDisparoNormal(fila, columna);
         return impacto;
     }
 
