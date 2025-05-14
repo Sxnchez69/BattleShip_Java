@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class TableroBarcos {
     Scanner teclado = new Scanner(System.in);
-    protected ArrayList<Barco> barcos;
-    private String[][] tablero_barcos;
+    public ArrayList<Barco> barcos;
+    public String[][] tablero_barcos;
     private String[] colores = {
             "\u001B[31m", // Rojo
             "\u001B[32m", // Verde
