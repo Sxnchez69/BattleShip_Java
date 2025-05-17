@@ -190,7 +190,7 @@ public class TableroBarcos {
     public boolean recibirDisparoNormal(int fila, int columna) {
         String celda = tablero_barcos[fila][columna];
         if (celda.contains("0")) {
-            tablero_barcos[fila][columna] = "X";
+
 
             for (Barco barco : barcos) {
                 int[] filas = barco.getFila();
@@ -202,97 +202,141 @@ public class TableroBarcos {
                     }
                 }
             }
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (i == fila && j == columna) {
+                        tablero_barcos[fila][columna] = "X";
+                    } else {
+                        if (i == 0) {
+                            tablero_barcos[i][j] = String.valueOf(j);
+                            tablero_barcos[i][0] = " ";
+                        } else {
+                            tablero_barcos[i][j] = "~";
+                        }
+                        if (j == 0) {
+                            tablero_barcos[i][j] = String.valueOf(i);
+                        }
+                    }
+                }
+            }
             return true;
         } else {
             tablero_barcos[fila][columna] = "w";
-            return false;
-        }
-    }
-
-    public boolean recibirDisparoGordo(int fila, int columna) throws ArrayIndexOutOfBoundsException {
-        String celda = tablero_barcos[fila][columna];
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-//                if (tablero_barcos[fila+i][columna+j] == null) {
-//                    throw new ArrayIndexOutOfBoundsException("");
-//                }
-                if (celda.contains("0")) {
-                    tablero_barcos[fila+i][columna+j] = "X";
-                    for (Barco barco : barcos) {
-                        int[] filas = barco.getFila();
-                        int[] columnas = barco.getColumna();
-                        for (int k = 0; k < filas.length; k++) {
-                            if (filas[k] == fila+i && columnas[k] == columna+j) {
-                                barco.getEstado_barco()[k] = true;
-                                break;
-                            }
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (i == fila && j == columna) {
+                        tablero_barcos[fila][columna] = "w";
+                    } else {
+                        if (i == 0) {
+                            tablero_barcos[i][j] = String.valueOf(j);
+                            tablero_barcos[i][0] = " ";
+                        } else {
+                            tablero_barcos[i][j] = "~";
+                        }
+                        if (j == 0) {
+                            tablero_barcos[i][j] = String.valueOf(i);
                         }
                     }
-                    return true;
-                } else {
-                    tablero_barcos[fila+i][columna+j] = "w";
-                    return false;
                 }
+                return false;
             }
         }
         return false;
     }
+    public boolean recibirDisparoGordo(int fila, int columna) {
+        boolean acerto = false;
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int f = fila + i;
+                int c = columna + j;
 
 
-//    public void colocarBarcosIA() {
-//        Random rand = new Random();
-//
-//        for (Barco barco : barcos) {
-//            boolean colocado = false;
-//            int tamaño = barco.getTamaño();
-//            while (!colocado) {
-//                int fila = rand.nextInt(8) + 1;
-//                int columna = rand.nextInt(8) + 1;
-//                String orientacion = rand.nextBoolean() ? "H" : "V";
-//                barco.setOrientacion(orientacion);
-//
-//                int[] filas = new int[tamaño];
-//                int[] columnas = new int[tamaño];
-//                boolean puedeColocar = true;
-//
-//                if (orientacion.equals("H")) {
-//                    if (columna + tamaño - 1 > 8) continue;
-//                    for (int i = 0; i < tamaño; i++) {
-//                        if (!tablero_barcos[fila][columna + i].equals("~")) {
-//                            puedeColocar = false;
-//                            break;
-//                        }
-//                    }
-//                    if (puedeColocar) {
-//                        for (int i = 0; i < tamaño; i++) {
-//                            tablero_barcos[fila][columna + i] = "0";
-//                            filas[i] = fila;
-//                            columnas[i] = columna + i;
-//                        }
-//                        barco.setFila(filas);
-//                        barco.setColumna(columnas);
-//                        colocado = true;
-//                    }
-//                } else {
-//                    if (fila + tamaño - 1 > 8) continue;
-//                    for (int i = 0; i < tamaño; i++) {
-//                        if (!tablero_barcos[fila + i][columna].equals("~")) {
-//                            puedeColocar = false;
-//                            break;
-//                        }
-//                    }
-//                    if (puedeColocar) {
-//                        for (int i = 0; i < tamaño; i++) {
-//                            tablero_barcos[fila + i][columna] = "0";
-//                            filas[i] = fila + i;
-//                            columnas[i] = columna;
-//                        }
-//                        barco.setFila(filas);
-//                        barco.setColumna(columnas);
-//                        colocado = true;
-//                    }
-//                }
-//            }
-//        }
-//    }
+                if (f >= 0 && f < tablero_barcos.length && c >= 0 && c < tablero_barcos[0].length) {
+                    String celda = tablero_barcos[f][c];
+
+                    if (celda.contains("0")) {
+                        tablero_barcos[f][c] = "X";
+                        acerto = true;
+
+
+                        for (Barco barco : barcos) {
+                            int[] filas = barco.getFila();
+                            int[] columnas = barco.getColumna();
+                            for (int k = 0; k < filas.length; k++) {
+                                if (filas[k] == f && columnas[k] == c) {
+                                    barco.getEstado_barco()[k] = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                    } else if (!celda.equals("X") && !celda.equals("w")) {
+
+                        tablero_barcos[f][c] = "w";
+                    }
+                }
+            }
+        }
+
+        return acerto;
+    }
+
+
+    public void colocarBarcoIA() {
+        Random rand = new Random();
+
+        for (Barco barco : barcos) {
+            boolean colocado = false;
+            int tamaño = barco.getTamaño();
+            while (!colocado) {
+                int fila = rand.nextInt(8) + 1;
+                int columna = rand.nextInt(8) + 1;
+                String orientacion = rand.nextBoolean() ? "H" : "V";
+                barco.setOrientacion(orientacion);
+
+                int[] filas = new int[tamaño];
+                int[] columnas = new int[tamaño];
+                boolean puedeColocar = true;
+
+                if (orientacion.equals("H")) {
+                    if (columna + tamaño - 1 > 8) continue;
+                    for (int i = 0; i < tamaño; i++) {
+                        if (!tablero_barcos[fila][columna + i].equals("~")) {
+                            puedeColocar = false;
+                            break;
+                        }
+                    }
+                    if (puedeColocar) {
+                        for (int i = 0; i < tamaño; i++) {
+                            tablero_barcos[fila][columna + i] = "0";
+                            filas[i] = fila;
+                            columnas[i] = columna + i;
+                        }
+                        barco.setFila(filas);
+                        barco.setColumna(columnas);
+                        colocado = true;
+                    }
+                } else {
+                    if (fila + tamaño - 1 > 8) continue;
+                    for (int i = 0; i < tamaño; i++) {
+                        if (!tablero_barcos[fila + i][columna].equals("~")) {
+                            puedeColocar = false;
+                            break;
+                        }
+                    }
+                    if (puedeColocar) {
+                        for (int i = 0; i < tamaño; i++) {
+                            tablero_barcos[fila + i][columna] = "0";
+                            filas[i] = fila + i;
+                            columnas[i] = columna;
+                        }
+                        barco.setFila(filas);
+                        barco.setColumna(columnas);
+                        colocado = true;
+                    }
+                }
+            }
+        }
+    }
 }

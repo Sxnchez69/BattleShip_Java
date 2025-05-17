@@ -10,18 +10,18 @@ public class JugadorIA extends Jugador {
         super(nombre);
     }
 
-//    @Override
-//    public boolean dispararMisil(TableroBarcos tableroEnemigo) {
-//        int fila = rand.nextInt(8) + 1;
-//        int columna = rand.nextInt(8) + 1;
-//
-//        System.out.println(getNombre() + " (IA) dispara a [" + fila + ", " + columna + "]");
-//        boolean impacto = tableroEnemigo.recibirDisparo(fila, columna);
-//        System.out.println("Resultado: " + (impacto ? "¡Impacto!" : "Agua..."));
-//        return impacto;
-//    }
-//
-//    public void colocarBarcosAleatoriamente() {
-//        tb.colocarBarcosIA();
-//    }
+    @Override
+    public boolean dispararMisil(TableroBarcos tableroEnemigo) {
+        int fila = rand.nextInt(8) + 1;
+        int columna = rand.nextInt(8) + 1;
+
+        System.out.println(getNombre() + " (IA) dispara a [" + fila + ", " + columna + "]");
+        boolean impacto = tableroEnemigo.recibirDisparoNormal(fila, columna);
+        System.out.println("Resultado: " + (impacto ? "¡Impacto!" : "Agua..."));
+        return impacto;
+    }
+
+    public void colocarBarcosAleatoriamente() {
+        tb.colocarBarcoIA();
+    }
 }
