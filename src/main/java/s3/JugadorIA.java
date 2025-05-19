@@ -10,6 +10,7 @@ public class JugadorIA extends Jugador {
     private boolean[][] posiciones;
     public JugadorIA(String nombre) {
         super(nombre);
+        posiciones = new boolean[9][9];
 
     }
 

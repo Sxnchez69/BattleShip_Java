@@ -49,7 +49,7 @@ public class Main {
                         break;
                     }
                     case 4: {
-                        System.out.println("Saliendo");
+                        System.out.println("Saliendo....");
                         break;
                     }
                     default: {

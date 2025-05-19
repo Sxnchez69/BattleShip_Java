@@ -40,8 +40,9 @@ public class Juego {
 
             if (estanTodosHundidos(oponente)) {
                 System.out.println(actual.getNombre() + " ha ganado la partida!");
+                System.out.println("");
                 jugando = false;
-                Estadisticas.guardarEstadistica(actual.getNombre(), "vs "+oponente.getNombre(), true, contador);
+                Estadisticas.guardarEstadistica(actual.getNombre(),oponente.getNombre(), true, contador);
 
             }
 

@@ -55,18 +55,18 @@ public class TableroBarcos {
         //Inicializar Barcos
         Barco b1 = new Barco(1);
         barcos.add(b1);
-//        for (int i = 1; i < 2; i++) {   //Pon un 5 luego mamon
-//            Barco b2_i = new Barco(2);
-//            barcos.add(b2_i);
-//        }
-////        for (int i = 1; i < 4; i++) {   //Pon un 4 luego mamon
-////            Barco b3_i = new Barco(3);
-////            barcos.add(b3_i);
-////        }
-////        for (int i = 1; i < 3; i++) {   //Pon un 3
-////            Barco b5_i = new Barco(5);
-////            barcos.add(b5_i);
-////        }
+        for (int i = 1; i < 5; i++) {   //Pon un 5 luego mamon
+            Barco b2_i = new Barco(2);
+            barcos.add(b2_i);
+        }
+        for (int i = 1; i < 4; i++) {   //Pon un 4 luego mamon
+            Barco b3_i = new Barco(3);
+            barcos.add(b3_i);
+        }
+        for (int i = 1; i < 3; i++) {   //Pon un 3
+            Barco b5_i = new Barco(5);
+            barcos.add(b5_i);
+        }
     }
 
     public void getTablero_barcos() {

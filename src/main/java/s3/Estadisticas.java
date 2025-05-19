@@ -15,11 +15,10 @@ public class Estadisticas {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             String fecha = ahora.format(formatter);
 
-            writer.write("Jugador: " + jugador +
-                    ", Tipo: " + tipoPartida +
-                    ", Victoria: " + victoria +
+            writer.write("Ganador: " + jugador +
+                    ", Rival: " + tipoPartida +
                     ", Turnos: " + turnos +
-                    ", Hora: " + fecha + "\n");
+                    ", Fecha: " + fecha + "\n");
         } catch (IOException e) {
             System.out.println("Error al guardar estadísticas: " + e.getMessage());
         }
