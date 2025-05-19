@@ -25,6 +25,9 @@ public class TableroBarcos {
     private String reset = "\u001B[0m";
     private boolean[][] posiciones = new boolean[9][9];
 
+    /**
+     * Constructor de un tablero, se inicializarán los barcos y el propio tablero
+     */
     public TableroBarcos() {
         this.barcos = new ArrayList<>();
         this.tablero_barcos = new String[9][9];
@@ -55,20 +58,23 @@ public class TableroBarcos {
         //Inicializar Barcos
         Barco b1 = new Barco(1);
         barcos.add(b1);
-        for (int i = 1; i < 5; i++) {   //Pon un 5 luego mamon
+        for (int i = 1; i < 5; i++) {
             Barco b2_i = new Barco(2);
             barcos.add(b2_i);
         }
-        for (int i = 1; i < 4; i++) {   //Pon un 4 luego mamon
+        for (int i = 1; i < 4; i++) {
             Barco b3_i = new Barco(3);
             barcos.add(b3_i);
         }
-        for (int i = 1; i < 3; i++) {   //Pon un 3
+        for (int i = 1; i < 3; i++) {
             Barco b5_i = new Barco(5);
             barcos.add(b5_i);
         }
     }
 
+    /**
+     * Muestra el tablero a la hora de colocar los barcos (se ve la posición de los barcos)
+     */
     public void getTablero_barcos() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -78,6 +84,9 @@ public class TableroBarcos {
         }
     }
 
+    /**
+     * Mustra el tablero a lo largo de una partida (no se ve la posición de los barcos)
+     */
     public void getTablero_barcos_juego() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -87,6 +96,11 @@ public class TableroBarcos {
         }
     }
 
+    /**
+     *
+     * @return Devuelve si el barco se ha podido colocar exitosamente o no (siempre se colocarán correctamente)
+     * @throws InputMismatchException Excepción que controla que no puedas poner una letra ni palabra a la hora de indicar la fila y columna donde se colocará un barco
+     */
     public boolean colocarBarco() throws InputMismatchException {
 
         int fila = 0;
@@ -304,7 +318,9 @@ public class TableroBarcos {
 //        return acerto;
 //    }
 
-
+    /**
+     * Método mediante el que la consola coloca sus barcos aleatoriamente
+     */
     public void colocarBarcoIA() {
         Random rand = new Random();
 

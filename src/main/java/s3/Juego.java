@@ -6,6 +6,9 @@ public class Juego {
     private Jugador jugador2;
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Se juega la partida
+     */
     public void iniciar() {
         System.out.println("");
         System.out.print("Nombre del Jugador 1: ");
@@ -56,6 +59,11 @@ public class Juego {
         }
     }
 
+    /**
+     *
+     * @param jugador Jugador de la partida
+     * @return Devuelve si el jugador ha ganado o no
+     */
     public boolean estanTodosHundidos(Jugador jugador) {
         for (Barco barco : jugador.tb.barcos) {
             boolean[] estado = barco.getEstado_barco();
@@ -66,6 +74,9 @@ public class Juego {
         return true;
     }
 
+    /**
+     * Inicio de una partida contra la consola
+     */
     public void iniciarIA() {
         System.out.print("Nombre del Jugador: ");
         jugador1 = new Jugador(scanner.nextLine());
@@ -113,6 +124,10 @@ public class Juego {
             }
         }
     }
+
+    /**
+     * Se limpia la pentalla para ocultar datos anteriores
+     */
     private static void limpiarPantalla() {
         for (int i = 0; i < 50; i++) {
             System.out.println("");

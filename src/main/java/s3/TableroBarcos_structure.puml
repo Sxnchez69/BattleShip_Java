@@ -1,0 +1,196 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "s3.TableroBarcos",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3616 { 
+   	label=s3
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Barco3616[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Barco</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   columna: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   estado_barco: boolean[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   fila: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   orientacion: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tamaño: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tipo: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Juego3616[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Juego</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   jugador1: Jugador [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jugador2: Jugador [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scanner: Scanner [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ estanTodosHundidos(jugador: Jugador): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ iniciar()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ iniciarIA()</TD></TR>
+<TR><TD ALIGN="LEFT" >- limpiarPantalla()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Jugador3616[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Jugador</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   nombre: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tb: TableroBarcos [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ dispararMisil(tableroEnemigo: TableroBarcos): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JugadorIA3616[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JugadorIA</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   posiciones: boolean[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rand: Random [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ colocarBarcosAleatoriamente()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dispararMisil(tableroEnemigo: TableroBarcos): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TableroBarcos3616[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TableroBarcos</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   barcos: ArrayList&lt;Barco&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   colores: String[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   posiciones: boolean[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   reset: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   tablero_barcos: String[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   tablero_barcos_juego: String[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   teclado: Scanner [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ colocarBarco(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ colocarBarcoIA()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTablero_barcos()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTablero_barcos_juego()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ recibirDisparoNormal(fila: int, columna: int): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Juego3616 -> Jugador3616[label="jugador1
+[0..1]"];
+Juego3616 -> Jugador3616[label="jugador2
+[0..1]"];
+Jugador3616 -> JugadorIA3616[arrowhead=none, arrowtail=empty, dir=both];
+Jugador3616 -> TableroBarcos3616[label="tb
+[0..1]"];
+TableroBarcos3616 -> Barco3616[label="barcos
+[0..*]"];
+    
+}
+@enduml

@@ -6,8 +6,11 @@ public class Misil {
     private int fila;
     private int columna;
     private boolean[][] posiciones;
-
     private int[][] area;
+
+    /**
+     * Constructor de un Misil
+     */
     public Misil() {
         this.fila = fila;
         this.columna = columna;
@@ -15,28 +18,58 @@ public class Misil {
         this.posiciones = new boolean[9][9];
     }
 
+    /**
+     *
+     * @return Devuelve la fila donde se lanzará un misil
+     */
     public int getFila() {
         return fila;
     }
+
+    /**
+     *
+     * @param fila Fila donde se lanza un misil
+     */
     public void setFila(int fila) {
         this.fila = fila;
     }
 
+    /**
+     *
+     * @return Devuelve la columna donde se lanzará en misil
+     */
     public int getColumna() {
         return columna;
     }
+
+    /**
+     *
+     * @param columna Columna en la que se lanza un misil
+     */
     public void setColumna(int columna) {
         this.columna = columna;
     }
 
+    /**
+     *
+     * @return Devuelve el área que abarca un misil
+     */
     public int[][] getArea() {
         return area;
     }
+
+    /**
+     *
+     * @param area Área que abarca un misil
+     */
     public void setArea(int[][] area) {
         this.area = area;
     }
 
-
+    /**
+     *
+     * @return Devuelve la fila y columna donde se lanzará un misil
+     */
     public int[] lanzarMisil(){
 
         System.out.println("============");

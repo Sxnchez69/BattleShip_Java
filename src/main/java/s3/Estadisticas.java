@@ -8,7 +8,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Estadisticas {
-
+    /**
+     *
+     * @param jugador Nombre del jugador de una partida
+     * @param tipoPartida El tipo de partida puede ser contra otro jugador o contra la propia consola
+     * @param victoria Indica si el jugador ha ganado o no
+     * @param turnos Indica los turnos totales de la partida
+     */
     public static void guardarEstadistica(String jugador, String tipoPartida, boolean victoria, int turnos) {
         try (FileWriter writer = new FileWriter("Estadisticas.txt", true)) {
             LocalDateTime ahora = LocalDateTime.now();
@@ -24,6 +30,9 @@ public class Estadisticas {
         }
     }
 
+    /**
+     * Se muestra el historial de partidas
+     */
     public static void mostrarEstadisticas() {
         try (BufferedReader reader = new BufferedReader(new FileReader("Estadisticas.txt"))) {
             String linea;
