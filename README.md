@@ -1,4 +1,10 @@
-![image](https://github.com/user-attachments/assets/35b472af-5a6e-4116-bdc6-4da647170a6b)
+                                                         System.out.println(BATTLESHIP);
+                                                                       
+                                                                       __/___            
+                                                                 _____/______|           
+                                                         _______/____\_______\_____     
+                                                         \               < < <       |   
+                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 El juego consiste en el tradicional juego de hundir la flota en el que 2 jugadores colocan su armada en un tablero, en este caso de 8x8, y disparan ciegamente al tablero rival hasta que uno de los jugadores derribe todos los barcos rivales.
