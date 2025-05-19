@@ -1,4 +1,5 @@
-# S3
+![image](https://github.com/user-attachments/assets/35b472af-5a6e-4116-bdc6-4da647170a6b)
+
 
 El juego consiste en el tradicional juego de hundir la flota en el que 2 jugadores colocan su armada en un tablero, en este caso de 8x8, y disparan ciegamente al tablero rival hasta que uno de los jugadores derribe todos los barcos rivales.
 En un principio se pensó en hacer un segundo tablero para cada jugador en el que se colocarían submarinos y serían disparados por torpedos que barrerían toda una fila.
