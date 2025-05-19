@@ -27,6 +27,8 @@ public class Juego {
         boolean jugando = true;
         Jugador actual = jugador1;
         Jugador oponente = jugador2;
+        int contador =1;
+        int rondas=1;
 
         while (jugando) {
             System.out.println("Turno de " + actual.getNombre());
@@ -39,12 +41,17 @@ public class Juego {
             if (estanTodosHundidos(oponente)) {
                 System.out.println(actual.getNombre() + " ha ganado la partida!");
                 jugando = false;
+                Estadisticas.guardarEstadistica(actual.getNombre(), "vs "+oponente.getNombre(), true, contador);
+
             }
 
             // Cambiar turnos
             Jugador temp = actual;
             actual = oponente;
             oponente = temp;
+            if (rondas % 2 != 0) {
+                contador++;
+            }
         }
     }
 
@@ -75,6 +82,8 @@ public class Juego {
         boolean jugando = true;
         Jugador actual = jugador1;
         Jugador oponente = jugador2;
+        int contador =1;
+        int rondas=1;
 
         while (jugando) {
             System.out.println("Turno de " + actual.getNombre());
@@ -87,12 +96,17 @@ public class Juego {
             if (estanTodosHundidos(oponente)) {
                 System.out.println(actual.getNombre() + " ha ganado la partida!");
                 jugando = false;
+                Estadisticas.guardarEstadistica(actual.getNombre(), "vs "+oponente.getNombre(), true, contador);
+
             }
 
             // Cambiar turnos
             Jugador temp = actual;
             actual = oponente;
             oponente = temp;
+            if (rondas % 2 != 0) {
+                contador++;
+            }
         }
     }
     private static void limpiarPantalla() {
