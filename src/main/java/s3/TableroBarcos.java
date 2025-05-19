@@ -23,7 +23,7 @@ public class TableroBarcos {
             "\u001B[94m"  // Azul claro
     };
     private String reset = "\u001B[0m";
-
+    private boolean[][] posiciones = new boolean[9][9];
 
     public TableroBarcos() {
         this.barcos = new ArrayList<>();
@@ -231,6 +231,10 @@ public class TableroBarcos {
 
     public boolean recibirDisparoNormal(int fila, int columna) {
         String celda = tablero_barcos[fila][columna];
+        if (posiciones[fila][columna]){
+            System.out.println("CUIDADO ya has disparado en la posición " + fila + ", " + columna);
+            return false;
+        }
         if (celda.contains("0")) {
             tablero_barcos[fila][columna] = "X";
             System.out.println("Impacto!!!");
@@ -245,15 +249,15 @@ public class TableroBarcos {
                 }
             }
             tablero_barcos_juego[fila][columna] = "X";
-
+            posiciones[fila][columna] = true;
             return true;
         } else {
             tablero_barcos[fila][columna] = "w";
             tablero_barcos_juego[fila][columna] = "w";
             System.out.println("Agua...");
-
-            return false;
         }
+        posiciones[fila][columna] = true;
+        return true;
     }
 
 //    public boolean recibirDisparoGordo(int fila, int columna) {

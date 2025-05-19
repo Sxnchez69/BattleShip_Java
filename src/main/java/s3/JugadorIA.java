@@ -24,7 +24,6 @@ public class JugadorIA extends Jugador {
         posiciones[fila][columna]=true;
         System.out.println(getNombre() + " dispara a [" + fila + ", " + columna + "]");
         boolean impacto = tableroEnemigo.recibirDisparoNormal(fila, columna);
-
         return impacto;
     }
 
