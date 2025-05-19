@@ -7,17 +7,21 @@ public class Juego {
     private Scanner scanner = new Scanner(System.in);
 
     public void iniciar() {
+        System.out.println("");
         System.out.print("Nombre del Jugador 1: ");
         jugador1 = new Jugador(scanner.nextLine());
+        System.out.println("");
+        System.out.println("== Colocación de barcos de " + jugador1.getNombre());
+        jugador1.tb.colocarBarco();
+        limpiarPantalla();
 
         System.out.print("Nombre del Jugador 2: ");
         jugador2 = new Jugador(scanner.nextLine());
-
-        System.out.println("== Colocación de barcos de " + jugador1.getNombre());
-        jugador1.tb.colocarBarco();
+        System.out.println("");
 
         System.out.println("== Colocación de barcos de " + jugador2.getNombre());
         jugador2.tb.colocarBarco();
+        limpiarPantalla();
 
         // Turnos
         boolean jugando = true;
@@ -27,7 +31,9 @@ public class Juego {
         while (jugando) {
             System.out.println("Turno de " + actual.getNombre());
             actual.dispararMisil(oponente.tb);
-            oponente.tb.getTablero_barcos();
+            oponente.tb.getTablero_barcos_juego();
+            System.out.println("");
+            System.out.println("");
 
 
             if (estanTodosHundidos(oponente)) {
@@ -55,15 +61,16 @@ public class Juego {
     public void iniciarIA() {
         System.out.print("Nombre del Jugador: ");
         jugador1 = new Jugador(scanner.nextLine());
-
-        jugador2 = new JugadorIA("CHATGPT2000(IA)");
-
+        System.out.println("");
         System.out.println("== Colocación de barcos de " + jugador1.getNombre());
         jugador1.tb.colocarBarco();
+        limpiarPantalla();
 
+        jugador2 = new JugadorIA("CHATGPT2000(IA)");
         System.out.println("== Colocación de barcos de " + jugador2.getNombre());
         jugador2.tb.colocarBarcoIA();
-
+        limpiarPantalla();
+        System.out.println("");
         // Turnos
         boolean jugando = true;
         Jugador actual = jugador1;
@@ -72,7 +79,9 @@ public class Juego {
         while (jugando) {
             System.out.println("Turno de " + actual.getNombre());
             actual.dispararMisil(oponente.tb);
-            oponente.tb.getTablero_barcos();
+            oponente.tb.getTablero_barcos_juego();
+            System.out.println("");
+
 
 
             if (estanTodosHundidos(oponente)) {
@@ -84,6 +93,11 @@ public class Juego {
             Jugador temp = actual;
             actual = oponente;
             oponente = temp;
+        }
+    }
+    private static void limpiarPantalla() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println("");
         }
     }
 }

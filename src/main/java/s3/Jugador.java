@@ -4,6 +4,7 @@ public class Jugador {
     private String nombre;
     protected TableroBarcos tb;
 
+
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.tb = new TableroBarcos();
@@ -12,6 +13,7 @@ public class Jugador {
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -26,15 +28,6 @@ public class Jugador {
         return impacto;
     }
 
-    public boolean dispararMisilGordo(TableroBarcos tableroEnemigo) {
-        Misil misil = new Misil();
-        int[] coordenadas = misil.lanzarMisil();
-        int fila = coordenadas[0];
-        int columna = coordenadas[1];
-
-        boolean impacto = tableroEnemigo.recibirDisparoNormal(fila, columna);
-        return impacto;
-    }
 
 
 }
