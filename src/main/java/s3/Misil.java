@@ -46,45 +46,45 @@ public class Misil {
         int fila=0;
         int columna=0;
         do {
-
-
-
-        do {
-            boolean valido = false;
             do {
-                System.out.print("Fila (1 a 8): ");
-                try {
-                    fila = teclado.nextInt();
-                    valido = false;
-                } catch (InputMismatchException e) {
-                    System.out.println("Valor No Válido");
-                    valido = true;
-                    teclado.nextLine();
-                }
-            }while (valido==true);
-            if (fila < 1 || fila > 8) {
-                System.out.println("Fila fuera de rango.");
-            }
-        } while (fila < 1 || fila > 8);
+                boolean valido = false;
+                do {
+                    System.out.print("Fila (1 a 8): ");
+                    try {
+                        fila = teclado.nextInt();
+                        valido = false;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Valor No Válido");
+                        valido = true;
+                        teclado.nextLine();
+                    }
 
-        // columna
-        do {
-            boolean valido = false;
-            do {
-                System.out.print("Columna (1 a 8): ");
-                try {
-                    columna = teclado.nextInt();
-                    valido = false;
-                } catch (InputMismatchException e) {
-                    System.out.println("Valor No Válido");
-                    valido = true;
-                    teclado.nextLine();
+                }while (valido==true);
+                if (fila < 1 || fila > 8) {
+                    System.out.println("Fila fuera de rango.");
                 }
-            }while (valido==true);
-            if (columna < 1 || columna > 8) {
-                System.out.println("Columna fuera de rango.");
+            } while (fila < 1 || fila > 8);
+            // columna
+            do {
+                boolean valido = false;
+                do {
+                    System.out.print("Columna (1 a 8): ");
+                    try {
+                        columna = teclado.nextInt();
+                        valido = false;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Valor No Válido");
+                        valido = true;
+                        teclado.nextLine();
+                    }
+                }while (valido==true);
+                if (columna < 1 || columna > 8) {
+                    System.out.println("Columna fuera de rango.");
+                }
+            } while (columna < 1 || columna > 8);
+            if (posiciones[fila][columna]) {
+                System.out.println("Ya has disparado en la posición" + fila + ", "+columna +". Intenta con otra.");
             }
-        } while (columna < 1 || columna > 8);
         }while(posiciones[fila][columna]==true);
         posiciones[fila][columna]=true;
         teclado.nextLine();

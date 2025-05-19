@@ -20,11 +20,13 @@ public class Jugador {
 
     public boolean dispararMisil(TableroBarcos tableroEnemigo) {
         Misil misil = new Misil();
-        int[] coordenadas = misil.lanzarMisil();
-        int fila = coordenadas[0];
-        int columna = coordenadas[1];
-
-        boolean impacto = tableroEnemigo.recibirDisparoNormal(fila, columna);
+        boolean impacto = false;
+        do {
+            int[] coordenadas = misil.lanzarMisil();
+            int fila = coordenadas[0];
+            int columna = coordenadas[1];
+            impacto = tableroEnemigo.recibirDisparoNormal(fila, columna);
+        } while (!impacto);
         return impacto;
     }
 //    public boolean dispararMisilGordo(TableroBarcos tableroEnemigo) {

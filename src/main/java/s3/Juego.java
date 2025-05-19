@@ -86,8 +86,11 @@ public class Juego {
         int rondas=1;
 
         while (jugando) {
+            boolean disparoValido = true;
             System.out.println("Turno de " + actual.getNombre());
-            actual.dispararMisil(oponente.tb);
+            do {
+                disparoValido = actual.dispararMisil(oponente.tb);
+            }while (disparoValido == false);
             oponente.tb.getTablero_barcos_juego();
             System.out.println("");
 
@@ -110,7 +113,7 @@ public class Juego {
         }
     }
     private static void limpiarPantalla() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             System.out.println("");
         }
     }
