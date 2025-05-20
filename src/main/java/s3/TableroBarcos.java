@@ -1,5 +1,6 @@
 package s3;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -108,6 +109,7 @@ public class TableroBarcos {
         int tamaño = 0;
         String orientacion;
         System.out.println("Colocando Barcos");
+        getTablero_barcos();
 
         for (Barco barco : barcos) {
             int colorIndex = barcos.indexOf(barco) % colores.length;
@@ -245,12 +247,14 @@ public class TableroBarcos {
 
     public boolean recibirDisparoNormal(int fila, int columna) {
         String celda = tablero_barcos[fila][columna];
+        String rojo = "\u001B[31m";
+        String azul = "\u001B[34m";
         if (posiciones[fila][columna]){
             System.out.println("CUIDADO ya has disparado en la posición " + fila + ", " + columna);
             return false;
         }
         if (celda.contains("0")) {
-            tablero_barcos[fila][columna] = "X";
+            tablero_barcos[fila][columna] = rojo+"X"+reset;
             System.out.println("Impacto!!!");
             for (Barco barco : barcos) {
                 int[] filas = barco.getFila();
@@ -262,12 +266,12 @@ public class TableroBarcos {
                     }
                 }
             }
-            tablero_barcos_juego[fila][columna] = "X";
+            tablero_barcos_juego[fila][columna] = rojo+"X"+reset;
             posiciones[fila][columna] = true;
             return true;
         } else {
-            tablero_barcos[fila][columna] = "w";
-            tablero_barcos_juego[fila][columna] = "w";
+            tablero_barcos[fila][columna] = azul+"w"+reset;
+            tablero_barcos_juego[fila][columna] = azul+"w"+reset;
             System.out.println("Agua...");
         }
         posiciones[fila][columna] = true;
