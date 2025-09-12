@@ -142,8 +142,8 @@ TableroBarcos --> Barco : barcos
 
 * ✅ Colocación de barcos
 * ✅ Disparos alternos y validación de errores
+* ✅ Mejoras en IA y estrategia de disparo
 * ⚠️ Misiles especiales y torpedos (en desarrollo)
-* ⚠️ Mejoras en IA y estrategia de disparo
 
 ---
 
